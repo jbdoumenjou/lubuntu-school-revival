@@ -435,9 +435,9 @@ if ! check_done "user_config"; then
         echo "✅ Dossier Travaux-communs déjà présent"
     fi
 
-    # Créer script lecture vocale sur le bureau s'il n'existe pas
-    if [ ! -f "/home/$USER/Bureau/Lecture-vocale.sh" ]; then
-        cat > /home/$USER/Bureau/Lecture-vocale.sh << 'EOF'
+    # Créer script lecture vocale dans le répertoire courant s'il n'existe pas
+    if [ ! -f "./Lecture-vocale.sh" ]; then
+        cat > ./Lecture-vocale.sh << 'EOF'
 #!/bin/bash
 # Script de lecture vocale pour élèves
 
@@ -448,7 +448,7 @@ if [ $? -eq 0 ] && [ -n "$texte" ]; then
     espeak -v french -s 120 "$texte"
 fi
 EOF
-        chmod +x /home/$USER/Bureau/Lecture-vocale.sh
+        chmod +x ./Lecture-vocale.sh
         echo "✅ Script lecture vocale créé"
     else
         echo "✅ Script lecture vocale déjà présent"
@@ -466,8 +466,8 @@ fi
 if ! check_done "homepage"; then
     echo "🏠 Création page d'accueil éducative..."
 
-    if [ ! -f "/home/$USER/Bureau/page-accueil-ecole.html" ]; then
-        cat > /home/$USER/Bureau/page-accueil-ecole.html << 'EOF'
+    if [ ! -f "./page-accueil-ecole.html" ]; then
+        cat > ./page-accueil-ecole.html << 'EOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -593,8 +593,8 @@ fi
 if ! check_done "maintenance_script"; then
     echo "📝 Création script de maintenance..."
 
-    if [ ! -f "/home/$USER/Bureau/Maintenance-ecole.sh" ]; then
-        cat > /home/$USER/Bureau/Maintenance-ecole.sh << 'EOF'
+    if [ ! -f "./Maintenance-ecole.sh" ]; then
+        cat > ./Maintenance-ecole.sh << 'EOF'
 #!/bin/bash
 echo "=== MAINTENANCE ÉCOLE ==="
 
@@ -611,7 +611,7 @@ rm -rf ~/.local/share/Trash/files/* 2>/dev/null
 
 echo "✅ Maintenance terminée !"
 EOF
-        chmod +x /home/$USER/Bureau/Maintenance-ecole.sh
+        chmod +x ./Maintenance-ecole.sh
         echo "✅ Script de maintenance créé"
     else
         echo "✅ Script de maintenance déjà présent"
@@ -651,9 +651,9 @@ echo "   • Support DYS : OpenDyslexic + eSpeak"
 echo "   • Scratch 1.4 (programmation, via APT)"
 echo ""
 echo "🏠 Fichiers créés :"
-echo "   • /home/$USER/Bureau/page-accueil-ecole.html"
-echo "   • /home/$USER/Bureau/Lecture-vocale.sh"
-echo "   • /home/$USER/Bureau/Maintenance-ecole.sh"
+echo "   • ./page-accueil-ecole.html (page d'accueil éducative)"
+echo "   • ./Lecture-vocale.sh (script lecture vocale)"
+echo "   • ./Maintenance-ecole.sh (script de maintenance)"
 echo "   • /home/$USER/Élèves/ (dossier élèves)"
 echo ""
 echo "⚠️  REDÉMARRAGE OBLIGATOIRE pour :"
@@ -669,7 +669,7 @@ echo "   • Configurer Firefox ESR :"
 echo "     - Page d'accueil : https://www.qwantjunior.com"
 echo "     - Installer uBlock Origin depuis about:addons"
 echo "     - Installer Read Aloud (aide DYS)"
-echo "     - Ou utiliser page locale : file:///home/$USER/Bureau/page-accueil-ecole.html"
+echo "     - Ou utiliser page locale : file://$(pwd)/page-accueil-ecole.html"
 echo "   • Tester résolution (doit être 1024x768 ou 800x600)"
 echo "   • Vérifier blocage pub DNS (sites sans publicités)"
 echo ""
