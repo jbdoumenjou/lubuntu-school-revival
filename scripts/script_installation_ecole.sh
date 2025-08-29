@@ -417,27 +417,24 @@ fi
 # 15. CONFIGURATION UTILISATEUR
 # =============================================================================
 
-if ! check_done "user_config"; then
-    echo "👤 Configuration utilisateur..."
+# Créer dossiers pour les élèves s'ils n'existent pas
+if [ ! -d "/home/$USER/Élèves" ]; then
+    mkdir -p /home/$USER/Élèves
+    echo "✅ Dossier Élèves créé"
+else
+    echo "✅ Dossier Élèves déjà présent"
+fi
 
-    # Créer dossiers pour les élèves s'ils n'existent pas
-    if [ ! -d "/home/$USER/Élèves" ]; then
-        mkdir -p /home/$USER/Élèves
-        echo "✅ Dossier Élèves créé"
-    else
-        echo "✅ Dossier Élèves déjà présent"
-    fi
+if [ ! -d "/home/$USER/Travaux-communs" ]; then
+    mkdir -p /home/$USER/Travaux-communs
+    echo "✅ Dossier Travaux-communs créé"
+else
+    echo "✅ Dossier Travaux-communs déjà présent"
+fi
 
-    if [ ! -d "/home/$USER/Travaux-communs" ]; then
-        mkdir -p /home/$USER/Travaux-communs
-        echo "✅ Dossier Travaux-communs créé"
-    else
-        echo "✅ Dossier Travaux-communs déjà présent"
-    fi
-
-    # Créer script lecture vocale dans le répertoire courant s'il n'existe pas
-    if [ ! -f "./Lecture-vocale.sh" ]; then
-        cat > ./Lecture-vocale.sh << 'EOF'
+# Créer script lecture vocale dans le répertoire courant s'il n'existe pas
+if [ ! -f "./Lecture-vocale.sh" ]; then
+    cat > ./Lecture-vocale.sh << 'EOF'
 #!/bin/bash
 # Script de lecture vocale pour élèves
 
@@ -448,12 +445,14 @@ if [ $? -eq 0 ] && [ -n "$texte" ]; then
     espeak -v french -s 120 "$texte"
 fi
 EOF
-        chmod +x ./Lecture-vocale.sh
-        echo "✅ Script lecture vocale créé"
-    else
-        echo "✅ Script lecture vocale déjà présent"
-    fi
-    
+    chmod +x ./Lecture-vocale.sh
+    echo "✅ Script lecture vocale créé"
+else
+    echo "✅ Script lecture vocale déjà présent"
+fi
+
+if ! check_done "user_config"; then
+    echo "👤 Configuration utilisateur..."
     mark_done "user_config"
 else
     echo "✅ Configuration utilisateur déjà effectuée"
@@ -463,10 +462,9 @@ fi
 # 16. PAGE D'ACCUEIL ÉDUCATIVE
 # =============================================================================
 
-if ! check_done "homepage"; then
+# Créer page d'accueil éducative si elle n'existe pas
+if [ ! -f "./page-accueil-ecole.html" ]; then
     echo "🏠 Création page d'accueil éducative..."
-
-    if [ ! -f "./page-accueil-ecole.html" ]; then
         cat > ./page-accueil-ecole.html << 'EOF'
 <!DOCTYPE html>
 <html lang="fr">
@@ -556,14 +554,15 @@ if ! check_done "homepage"; then
 </body>
 </html>
 EOF
-        echo "✅ Page d'accueil éducative créée"
-    else
-        echo "✅ Page d'accueil éducative déjà présente"
-    fi
-    
+    echo "✅ Page d'accueil éducative créée"
+else
+    echo "✅ Page d'accueil éducative déjà présente"
+fi
+
+if ! check_done "homepage"; then
     mark_done "homepage"
 else
-    echo "✅ Page d'accueil éducative déjà créée"
+    echo "✅ Configuration page d'accueil déjà effectuée"
 fi
 
 # =============================================================================
@@ -590,10 +589,9 @@ fi
 # 18. SCRIPT DE MAINTENANCE
 # =============================================================================
 
-if ! check_done "maintenance_script"; then
+# Créer script de maintenance s'il n'existe pas
+if [ ! -f "./Maintenance-ecole.sh" ]; then
     echo "📝 Création script de maintenance..."
-
-    if [ ! -f "./Maintenance-ecole.sh" ]; then
         cat > ./Maintenance-ecole.sh << 'EOF'
 #!/bin/bash
 echo "=== MAINTENANCE ÉCOLE ==="
@@ -612,14 +610,15 @@ rm -rf ~/.local/share/Trash/files/* 2>/dev/null
 echo "✅ Maintenance terminée !"
 EOF
         chmod +x ./Maintenance-ecole.sh
-        echo "✅ Script de maintenance créé"
-    else
-        echo "✅ Script de maintenance déjà présent"
-    fi
-    
+    echo "✅ Script de maintenance créé"
+else
+    echo "✅ Script de maintenance déjà présent"
+fi
+
+if ! check_done "maintenance_script"; then
     mark_done "maintenance_script"
 else
-    echo "✅ Script de maintenance déjà créé"
+    echo "✅ Configuration script de maintenance déjà effectuée"
 fi
 
 # =============================================================================
