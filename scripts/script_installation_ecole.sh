@@ -421,23 +421,23 @@ if ! check_done "user_config"; then
     echo "👤 Configuration utilisateur..."
 
     # Créer dossiers pour les élèves s'ils n'existent pas
-    if [ ! -d "/home/edl/Élèves" ]; then
-        mkdir -p /home/edl/Élèves
+    if [ ! -d "/home/$USER/Élèves" ]; then
+        mkdir -p /home/$USER/Élèves
         echo "✅ Dossier Élèves créé"
     else
         echo "✅ Dossier Élèves déjà présent"
     fi
 
-    if [ ! -d "/home/edl/Travaux-communs" ]; then
-        mkdir -p /home/edl/Travaux-communs
+    if [ ! -d "/home/$USER/Travaux-communs" ]; then
+        mkdir -p /home/$USER/Travaux-communs
         echo "✅ Dossier Travaux-communs créé"
     else
         echo "✅ Dossier Travaux-communs déjà présent"
     fi
 
     # Créer script lecture vocale sur le bureau s'il n'existe pas
-    if [ ! -f "/home/edl/Bureau/Lecture-vocale.sh" ]; then
-        cat > /home/edl/Bureau/Lecture-vocale.sh << 'EOF'
+    if [ ! -f "/home/$USER/Bureau/Lecture-vocale.sh" ]; then
+        cat > /home/$USER/Bureau/Lecture-vocale.sh << 'EOF'
 #!/bin/bash
 # Script de lecture vocale pour élèves
 
@@ -448,7 +448,7 @@ if [ $? -eq 0 ] && [ -n "$texte" ]; then
     espeak -v french -s 120 "$texte"
 fi
 EOF
-        chmod +x /home/edl/Bureau/Lecture-vocale.sh
+        chmod +x /home/$USER/Bureau/Lecture-vocale.sh
         echo "✅ Script lecture vocale créé"
     else
         echo "✅ Script lecture vocale déjà présent"
@@ -466,8 +466,8 @@ fi
 if ! check_done "homepage"; then
     echo "🏠 Création page d'accueil éducative..."
 
-    if [ ! -f "/home/edl/Bureau/page-accueil-ecole.html" ]; then
-        cat > /home/edl/Bureau/page-accueil-ecole.html << 'EOF'
+    if [ ! -f "/home/$USER/Bureau/page-accueil-ecole.html" ]; then
+        cat > /home/$USER/Bureau/page-accueil-ecole.html << 'EOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -590,8 +590,8 @@ fi
 if ! check_done "maintenance_script"; then
     echo "📝 Création script de maintenance..."
 
-    if [ ! -f "/home/edl/Bureau/Maintenance-ecole.sh" ]; then
-        cat > /home/edl/Bureau/Maintenance-ecole.sh << 'EOF'
+    if [ ! -f "/home/$USER/Bureau/Maintenance-ecole.sh" ]; then
+        cat > /home/$USER/Bureau/Maintenance-ecole.sh << 'EOF'
 #!/bin/bash
 echo "=== MAINTENANCE ÉCOLE ==="
 
@@ -608,7 +608,7 @@ rm -rf ~/.local/share/Trash/files/* 2>/dev/null
 
 echo "✅ Maintenance terminée !"
 EOF
-        chmod +x /home/edl/Bureau/Maintenance-ecole.sh
+        chmod +x /home/$USER/Bureau/Maintenance-ecole.sh
         echo "✅ Script de maintenance créé"
     else
         echo "✅ Script de maintenance déjà présent"
@@ -648,10 +648,10 @@ echo "   • Support DYS : OpenDyslexic + eSpeak"
 echo "   • Scratch 1.4 (programmation, via APT)"
 echo ""
 echo "🏠 Fichiers créés :"
-echo "   • /home/edl/Bureau/page-accueil-ecole.html"
-echo "   • /home/edl/Bureau/Lecture-vocale.sh"
-echo "   • /home/edl/Bureau/Maintenance-ecole.sh"
-echo "   • /home/edl/Élèves/ (dossier élèves)"
+echo "   • /home/$USER/Bureau/page-accueil-ecole.html"
+echo "   • /home/$USER/Bureau/Lecture-vocale.sh"
+echo "   • /home/$USER/Bureau/Maintenance-ecole.sh"
+echo "   • /home/$USER/Élèves/ (dossier élèves)"
 echo ""
 echo "⚠️  REDÉMARRAGE OBLIGATOIRE pour :"
 echo "   • Nouvelle résolution d'écran"
@@ -666,7 +666,7 @@ echo "   • Configurer Firefox ESR :"
 echo "     - Page d'accueil : https://www.qwantjunior.com"
 echo "     - Installer uBlock Origin depuis about:addons"
 echo "     - Installer Read Aloud (aide DYS)"
-echo "     - Ou utiliser page locale : file:///home/edl/Bureau/page-accueil-ecole.html"
+echo "     - Ou utiliser page locale : file:///home/$USER/Bureau/page-accueil-ecole.html"
 echo "   • Tester résolution (doit être 1024x768 ou 800x600)"
 echo "   • Vérifier blocage pub DNS (sites sans publicités)"
 echo ""
@@ -902,11 +902,11 @@ echo "✅ Scratch 1.4 installé (via APT)"
 echo "👤 Configuration utilisateur..."
 
 # Créer dossiers pour les élèves
-mkdir -p /home/edl/Élèves
-mkdir -p /home/edl/Travaux-communs
+mkdir -p /home/$USER/Élèves
+mkdir -p /home/$USER/Travaux-communs
 
 # Créer script lecture vocale sur le bureau
-cat > /home/edl/Bureau/Lecture-vocale.sh << 'EOF'
+cat > /home/$USER/Bureau/Lecture-vocale.sh << 'EOF'
 #!/bin/bash
 # Script de lecture vocale pour élèves
 
@@ -918,7 +918,7 @@ if [ $? -eq 0 ] && [ -n "$texte" ]; then
 fi
 EOF
 
-chmod +x /home/edl/Bureau/Lecture-vocale.sh
+chmod +x /home/$USER/Bureau/Lecture-vocale.sh
 
 echo "✅ Configuration utilisateur terminée"
 
@@ -928,7 +928,7 @@ echo "✅ Configuration utilisateur terminée"
 
 echo "🏠 Création page d'accueil éducative..."
 
-cat > /home/edl/Bureau/page-accueil-ecole.html << 'EOF'
+cat > /home/$USER/Bureau/page-accueil-ecole.html << 'EOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1061,9 +1061,9 @@ echo "   • Support DYS : OpenDyslexic + eSpeak"
 echo "   • Scratch 1.4 (programmation, via APT)"
 echo ""
 echo "🏠 Fichiers créés :"
-echo "   • /home/edl/Bureau/page-accueil-ecole.html"
-echo "   • /home/edl/Bureau/Lecture-vocale.sh"
-echo "   • /home/edl/Élèves/ (dossier élèves)"
+echo "   • /home/$USER/Bureau/page-accueil-ecole.html"
+echo "   • /home/$USER/Bureau/Lecture-vocale.sh"
+echo "   • /home/$USER/Élèves/ (dossier élèves)"
 echo ""
 echo "⚠️  REDÉMARRAGE OBLIGATOIRE pour :"
 echo "   • Nouvelle résolution d'écran"
@@ -1078,7 +1078,7 @@ echo "   • Configurer Firefox ESR :"
 echo "     - Page d'accueil : https://www.qwantjunior.com"
 echo "     - Installer uBlock Origin depuis about:addons"
 echo "     - Installer Read Aloud (aide DYS)"
-echo "     - Ou utiliser page locale : file:///home/edl/Bureau/page-accueil-ecole.html"
+echo "     - Ou utiliser page locale : file:///home/$USER/Bureau/page-accueil-ecole.html"
 echo "   • Tester résolution (doit être 1024x768 ou 800x600)"
 echo "   • Vérifier blocage pub DNS (sites sans publicités)"
 echo ""
@@ -1089,7 +1089,7 @@ echo ""
 # 19. SCRIPT DE MAINTENANCE
 # =============================================================================
 
-cat > /home/edl/Bureau/Maintenance-ecole.sh << 'EOF'
+cat > /home/$USER/Bureau/Maintenance-ecole.sh << 'EOF'
 #!/bin/bash
 echo "=== MAINTENANCE ÉCOLE ==="
 
@@ -1107,8 +1107,8 @@ rm -rf ~/.local/share/Trash/files/* 2>/dev/null
 echo "✅ Maintenance terminée !"
 EOF
 
-chmod +x /home/edl/Bureau/Maintenance-ecole.sh
+chmod +x /home/$USER/Bureau/Maintenance-ecole.sh
 
-echo "📝 Script de maintenance créé : /home/edl/Bureau/Maintenance-ecole.sh"
+echo "📝 Script de maintenance créé : /home/$USER/Bureau/Maintenance-ecole.sh"
 echo ""
 echo "🎯 Installation terminée ! Redémarrez maintenant."
