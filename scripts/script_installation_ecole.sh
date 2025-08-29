@@ -519,10 +519,13 @@ if ! check_done "homepage"; then
         <h2>Mathématiques</h2>
         <div class="sites">
             <div class="site">
-                <a href="https://therese.eveilleau.pagesperso-orange.fr" target="_blank">Mathématiques Magiques<small>Jeux et curiosités</small></a>
+                <a href="https://www.maths-et-tiques.fr" target="_blank">Maths et Tiques<small>Cours et exercices</small></a>
             </div>
             <div class="site">
-                <a href="https://www.gomaths.ch" target="_blank">Gomaths<small>Calcul mental</small></a>
+                <a href="https://calculatice.ac-lille.fr" target="_blank">Calculatice<small>Calcul mental officiel</small></a>
+            </div>
+            <div class="site">
+                <a href="https://www.jeuxmaths.fr" target="_blank">Jeux Maths<small>Jeux éducatifs mathématiques</small></a>
             </div>
         </div>
     </div>
@@ -980,10 +983,13 @@ cat > /home/$USER/Bureau/page-accueil-ecole.html << 'EOF'
         <h2>Mathématiques</h2>
         <div class="sites">
             <div class="site">
-                <a href="https://therese.eveilleau.pagesperso-orange.fr" target="_blank">Mathématiques Magiques<small>Jeux et curiosités</small></a>
+                <a href="https://www.maths-et-tiques.fr" target="_blank">Maths et Tiques<small>Cours et exercices</small></a>
             </div>
             <div class="site">
-                <a href="https://matoumatheux.ac-rennes.fr" target="_blank">Matou Matheux<small>Exercices interactifs</small></a>
+                <a href="https://calculatice.ac-lille.fr" target="_blank">Calculatice<small>Calcul mental officiel</small></a>
+            </div>
+            <div class="site">
+                <a href="https://www.jeuxmaths.fr" target="_blank">Jeux Maths<small>Jeux éducatifs mathématiques</small></a>
             </div>
         </div>
     </div>
